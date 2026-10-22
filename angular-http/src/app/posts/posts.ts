@@ -28,6 +28,16 @@ export class Posts {
       error: (err: HttpErrorResponse) => this.gestisciErrore(err),
     });
   }
+    caricaTutti(): void {
+    this.inizia();
+    this.postService.getPosts().subscribe({
+      next: (dati) => {
+        this.posts.set(dati);
+        this.loading.set(false);
+      },
+      error: (err: HttpErrorResponse) => this.gestisciErrore(err),
+    });
+  }
 
   private inizia(): void {
     this.loading.set(true);
